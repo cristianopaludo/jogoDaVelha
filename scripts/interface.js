@@ -18,14 +18,19 @@ function handlerClick(event) {
     let square = event.target;
     let position = square.id;
 
+    let pt = document.getElementById("playerTurn");
     let winnerScreen = document.getElementById("winnerScreen");
     let winner = document.getElementById("winner");
 
     if (handleMove(position)) { // se o jogo acabar dispara um alerta depois de 10ms
-        winnerScreen.style = "display: inline-block;"
-        winner.className = symbols[playerTime];       
+        winnerScreen.style = "display: block;"
+        winner.className = symbols[playerTime];
+        resetScreen();
+        setTimeout(refresh => {
+            pt.innerHTML = '<div>Quem joga:</div><div class="o"></div>';
+            winnerScreen.style = "display: none;"
+        }, 3000)
     }
-
 
     updateSquare(position);
 }
@@ -55,5 +60,10 @@ function updateSquares() {
 function playerTurn() {
     let pt = document.getElementById("playerTurn");
     turn = playerTime == 0 ? 1 : 0;
-    pt.innerHTML =  `<div>Próximo a jogar:</div><div class="${symbols[turn]}"></div>`
+    pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
+}
+
+function resetScreen() {
+    let pt = document.getElementById("playerTurn");
+    pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
 }
