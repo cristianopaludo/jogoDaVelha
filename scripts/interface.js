@@ -19,17 +19,38 @@ function handlerClick(event) {
     let position = square.id;
 
     let pt = document.getElementById("playerTurn");
-    let winnerScreen = document.getElementById("winnerScreen");
-    let winner = document.getElementById("winner");
+    
 
     if (handleMove(position)) { // se o jogo acabar dispara um alerta depois de 10ms
-        winnerScreen.style = "display: block;"
+        let resultScreen = document.getElementById("resultScreen");
+        let winner = document.getElementById("winner");
+        let closeResultScreen = document.getElementById("closeResultScreen");
+        let result = document.getElementById("result");
+
+        if (isDraw) {
+            result.innerText = "DEU VELHA!:";
+            winner.style = "display: none;";
+
+        } else {
+            result.innerText = "VENCEDOR:";
+            winner.style = "display: block;";
+        }
+
+
+        resultScreen.style = "display: flex;"
         winner.className = symbols[playerTime];
         resetScreen();
-        setTimeout(refresh => {
-            pt.innerHTML = '<div>Quem joga:</div><div class="o"></div>';
-            winnerScreen.style = "display: none;"
-        }, 3000)
+
+        closeResultScreen.addEventListener('click', () => {
+            pt.innerHTML = '';
+            resultScreen.style = "display: none;";
+            alert
+        }) 
+
+        setTimeout(() => {
+            pt.innerHTML = '';
+            resultScreen.style = "display: none;";
+        }, 10000)
     }
 
     updateSquare(position);
@@ -61,9 +82,36 @@ function playerTurn() {
     let pt = document.getElementById("playerTurn");
     turn = playerTime == 0 ? 1 : 0;
     pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
+
+    if (gameOver || restartGame || isNewGame) {
+        pt.innerHTML =  `<div>Quem joga:</div><div class="o"></div>`
+    }
+
 }
 
-function resetScreen() {
+function updateScore() {
+    let player1 = document.getElementById("num-p1");
+    let player2 = document.getElementById("num-p2");
+    let p1 = parseInt(player1.innerText);
+    let p2 = parseInt(player2.innerText);
+    if (isNewGame) {
+        player1.innerText = 0;
+        player2.innerText = 0;
+    } else if (isWin && playerTime == 0) {
+        p1 ++
+        player1.innerText = p1;
+    } else if (isWin && playerTime == 1) {
+        p2 ++
+        player2.innerText = p2;
+    }
+}
+
+function resetScreen() { // após da vitória/empate, a tela volta ao normal
     let pt = document.getElementById("playerTurn");
     pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
+}
+
+function closeScreen() {
+    let display = document.getElementById("closeScreen");
+
 }

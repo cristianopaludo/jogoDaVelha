@@ -1,6 +1,10 @@
 let board = ['','','','','','','','','']; // tabuleiro
 let playerTime = 0; // vez do jogador
-let gameOver = false;
+let gameOver = false; // se o jogo acabou 
+let restartGame = false;
+let isNewGame = false;
+let isDraw = false;
+let count = 0;
 let symbols = ['o', 'x']; // marcação do jogador
 
 let winStates = [ // mapeamento de cada estado de vitória
@@ -25,7 +29,12 @@ function handleMove(position) {
         board[position] = symbols[playerTime]; // de acordo com a vez do jogador irá ser preenchido ou um 'x' ou um 'o' na posição recebida pela função do handlerClick lá da interface
 
         // vefiricar depois da jogada ser executada se houve um vencedor
-        gameOver = isWin();
+        if (isWin() || isDraw) {
+            gameOver = true;
+        }
+        // gameOver = isWin();
+        // // verificar se houve empate
+        // gameOver = isDraw;
 
         if (!gameOver) {
             // programar a vez do player
@@ -45,7 +54,6 @@ function handleMove(position) {
 
 // verifica se houve um vencedor de acordo com o mapeamento
 function isWin() {
-
     for (i in winStates) {
         let seq = winStates[i];
 
@@ -54,16 +62,37 @@ function isWin() {
         pos3 = seq[2];
 
         if (board[pos1] == board[pos2] && board[pos1] == board[pos3] && board[pos1] != '') {
+            updateScore();
             return true;
-        }
+        } 
+    
+    }
+
+    count++;
+
+    if (count == 9) {
+        isDraw = true;
     }
 
     return false;
 }
 
+
 function restart() {
+    restartGame = true;
     board = ['','','','','','','','','']; // zera o tabuleiro
     playerTime = 0; // zera a vez do jogador
     gameOver = false; // volta a permitir movimentos
     updateSquares(); // atualiza a interface do tabuleiro
+    playerTurn();
+    isDraw = false;
+    count = 0;
+    restartGame = false; // desativa o restartGame mode
+}
+
+function newGame() {
+    isNewGame = true;
+    restart();
+    updateScore();
+    isNewGame = false;
 }
