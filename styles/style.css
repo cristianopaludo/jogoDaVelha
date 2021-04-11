@@ -10,9 +10,8 @@ body {
 }
 
 h1 {
-
-    color: white;
-    padding: 50px;
+    color: goldenrod;
+    padding: 10px;
 }
 
 #score {
@@ -192,4 +191,30 @@ h1 {
 @keyframes zoomInOut {
     0% {transform: scale(1);}
     50% {transform: scale(1.1);}
+}
+
+@media screen and (max-width: 580px) {
+    #score {
+        transform: scale(.88);
+        width: 330px;
+        grid-template-areas:    "name1 name1 name2 name2" 
+                                "emb1 n1 n2 emb2"
+                                "pt pt pt pt";
+        padding: 30px;
+        border: 5px dashed #252525;
+        color: #f5f5f5;
+        font-weight: bold;
+    
+
+    }
+
+    #num-p2 {
+        border-left: none;
+    }
+    
+    #playerTurn {
+        height: 100px;
+        margin: 40px auto 0px auto;
+    }
+
 }
