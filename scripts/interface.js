@@ -46,11 +46,6 @@ function handlerClick(event) {
             resultScreen.style = "display: none;";
             alert
         }) 
-
-        setTimeout(() => {
-            pt.innerHTML = '';
-            resultScreen.style = "display: none;";
-        }, 10000)
     }
 
     updateSquare(position);
@@ -74,7 +69,22 @@ function updateSquares() {
         if (symbol == '') { // se a posição do board não estiver vazia ele receberá tudo vazio
             square.innerHTML = `<div class="${symbol}"></div>`;
         }
+        
+        // winner's square animation
+        for (pos in winnerSeq) {
+            if (isWin && winnerSeq[pos] == position) {
+                square.style = "border-color: tomato;";
+            } 
+        }
+        // reset animation
+        if (restartGame) {
+            square.style = "border-color: #101010;"
+        }
+
     })
+
+    
+
 
 }
 
@@ -109,9 +119,4 @@ function updateScore() {
 function resetScreen() { // após da vitória/empate, a tela volta ao normal
     let pt = document.getElementById("playerTurn");
     pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
-}
-
-function closeScreen() {
-    let display = document.getElementById("closeScreen");
-
 }

@@ -5,6 +5,7 @@ let restartGame = false;
 let isNewGame = false;
 let isDraw = false;
 let count = 0;
+let winnerSeq;
 let symbols = ['o', 'x']; // marcação do jogador
 
 let winStates = [ // mapeamento de cada estado de vitória
@@ -62,7 +63,9 @@ function isWin() {
         pos3 = seq[2];
 
         if (board[pos1] == board[pos2] && board[pos1] == board[pos3] && board[pos1] != '') {
+            winnerSeq = seq;
             updateScore();
+            updateSquares();
             return true;
         } 
     
@@ -82,11 +85,11 @@ function restart() {
     restartGame = true;
     board = ['','','','','','','','','']; // zera o tabuleiro
     playerTime = 0; // zera a vez do jogador
-    gameOver = false; // volta a permitir movimentos
-    updateSquares(); // atualiza a interface do tabuleiro
+    gameOver = false; // volta a permitir movimentos 
     playerTurn();
     isDraw = false;
     count = 0;
+    updateSquares(); // atualiza a interface do tabuleiro
     restartGame = false; // desativa o restartGame mode
 }
 

@@ -53,6 +53,7 @@ h1 {
     font-size: 60px;
     justify-self: center;
     transform: translateY(18px);
+    border-right: 5px dotted tomato;
 }
 
 #num-p2 {
@@ -63,14 +64,16 @@ h1 {
     font-size: 60px;
     justify-self: center;
     transform: translateY(18px);
+    border-left: 5px dotted tomato;
 }
 
 #playerTurn {
     grid-area: pt;
     padding: 0px 15px;
     width: 120px;
-    border-left: 5px dotted tomato;
-    border-right: 5px dotted tomato;
+    animation-name: zoomInOut;
+    animation-iteration-count: infinite;
+    animation-duration: 1.5s;
 }
 
 .square {
@@ -184,4 +187,9 @@ h1 {
 
 #newGame {
     background-color: tomato;
+}
+
+@keyframes zoomInOut {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
 }
