@@ -37,6 +37,7 @@ function handlerClick(event) {
         }
 
 
+
         resultScreen.style = "display: flex;"
         winner.className = symbols[playerTime];
         resetScreen();
@@ -73,7 +74,7 @@ function updateSquares() {
         // winner's square animation
         for (pos in winnerSeq) {
             if (isWin && winnerSeq[pos] == position) {
-                square.style = "border-color: tomato;";
+                square.style = "border-color: tomato;"
             } 
         }
         // reset animation
@@ -82,10 +83,20 @@ function updateSquares() {
         }
 
     })
+}
 
-    
+function roundCount() {
+    let roundCount = document.getElementById("roundCount");
+    rCount = parseInt(roundCount.innerText);
+    if (gameOver) {
+        rCount++;
+        roundCount.innerText = rCount;
+    }
 
-
+    if (isNewGame) {
+        rCount = 1;
+        roundCount.innerText = rCount;
+    }
 }
 
 function playerTurn() {

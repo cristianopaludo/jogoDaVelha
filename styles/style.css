@@ -75,6 +75,19 @@ h1 {
     animation-duration: 1.5s;
 }
 
+#round {
+    font-size: 0.75rem;
+    font-weight: bolder;
+    color: goldenrod;
+    /* transform: translateX(110px); */
+    margin-bottom: 5px;
+}
+
+#roundCount {
+    display: inline-block;
+    color: toma;
+}
+
 .square {
     width: 100px;
     height: 100px;

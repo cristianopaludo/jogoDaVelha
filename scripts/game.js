@@ -84,6 +84,7 @@ function isWin() {
 function restart() {
     restartGame = true;
     board = ['','','','','','','','','']; // zera o tabuleiro
+    roundCount(); // atualiza o número de rodadas
     playerTime = 0; // zera a vez do jogador
     gameOver = false; // volta a permitir movimentos 
     playerTurn();
