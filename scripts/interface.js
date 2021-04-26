@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // criar a função do evento do clique para definir os seguintes passos:
 // definir uma variável para receber o alvo do evento
-// fazer com que cada vez que um quadrado é clicado o board receba através da função handleMove a posição como parâmetro
-// chamar uma função que atualiza a interface do quadrado clicado
-
 function handlerClick(event) {
     let square = event.target;
     let position = square.id;
@@ -39,7 +36,12 @@ function handlerClick(event) {
 
 
         resultScreen.style = "display: flex;"
-        winner.className = symbols[playerTime];
+        
+        if (playerTime == 0) { // ao contrário porque a vez do jogador vai atualizar já pra próxima rodada
+            winner.className = symbols[1];
+        } else {
+            winner.className = symbols[0];
+        }
         resetScreen();
 
         closeResultScreen.addEventListener('click', () => {
@@ -49,8 +51,10 @@ function handlerClick(event) {
         }) 
     }
 
+    // chamar uma função que atualiza a interface do quadrado clicado
     updateSquare(position);
 }
+
 
 //pra não atualizar todos os quadrados a cada clique:
 function updateSquare(position) {
@@ -59,7 +63,7 @@ function updateSquare(position) {
     square.innerHTML = `<div class="${symbol}"></div>`;
 }
 
-
+// fazer com que cada vez que um quadrado é clicado o board receba através da função handleMove a posição como parâmetro
 function updateSquares() {
     let squares = document.querySelectorAll(".square");
 
@@ -105,7 +109,7 @@ function playerTurn() {
     pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
 
     if (gameOver || restartGame || isNewGame) {
-        pt.innerHTML =  `<div>Quem joga:</div><div class="o"></div>`
+        pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[playerTime]}"></div>`
     }
 
 }

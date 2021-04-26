@@ -20,7 +20,7 @@ let winStates = [ // mapeamento de cada estado de vitória
 
 // lógica de movimento que vai receber a posição do quadrado clicado na interface
 function handleMove(position) {
-
+    
     if (gameOver) { // imperdir que o jogo prossiga quando acabar
         return;
     }
@@ -45,11 +45,10 @@ function handleMove(position) {
             //     playerTime = 0;
             // }
             playerTurn();
-            playerTime = playerTime == 0 ? 1 : 0; // opção ternária
         }
 
     }
-
+    playerTime = playerTime == 0 ? 1 : 0;
     return gameOver;
 }
 
@@ -85,7 +84,6 @@ function restart() {
     restartGame = true;
     board = ['','','','','','','','','']; // zera o tabuleiro
     roundCount(); // atualiza o número de rodadas
-    playerTime = 0; // zera a vez do jogador
     gameOver = false; // volta a permitir movimentos 
     playerTurn();
     isDraw = false;
