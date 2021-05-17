@@ -17,19 +17,27 @@
     <h1>Jogo da Velha</h1>
    
     <div id="score">
-        <div id="name-p1">Jogador 1</div>
-        <div id="name-p2">Jogador 2</div>
+        <div id="p1" class="players">
+            <div id="nameP1">Jogador 1</div>
+            <button id="btn-edit-nameP1" class="btn-icons btn-edit" onclick="editName(document.getElementById('p1'))"></button>
+        </div>
+        <div id="p1-emblem"class="o"></div>
+        <div id="num-p1">0</div>
+
+
+        <div id="p2" class="players">
+            <div id="nameP2">Jogador 2</div>
+            <button id="btn-edit-nameP2" class="btn-icons btn-edit" onclick="editName(document.getElementById('p2'))"></button>
+        </div>
+        <div id="p2-emblem" class="x"></div>
+        <div id="num-p2">0</div>
+        
         <div id="playerTurn">
             <div>Quem joga:</div>
             <div class="o"></div>
         </div>
-        <div id="p1"class="o"></div>
-        <div id="num-p1">0</div>
-        <div id="p2" class="x"></div>
-        <div id="num-p2">0</div>
     </div>
 
-    
     <div id="round">Rodada: <div id="roundCount">1</div></div>
     <div class="stage">
         

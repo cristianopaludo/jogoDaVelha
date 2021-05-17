@@ -96,5 +96,6 @@ function newGame() {
     isNewGame = true;
     restart();
     updateScore();
+    editName();
     isNewGame = false;
 }

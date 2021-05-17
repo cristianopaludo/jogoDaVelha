@@ -53,6 +53,11 @@ function handlerClick(event) {
 
     // chamar uma função que atualiza a interface do quadrado clicado
     updateSquare(position);
+
+    // após a primeira jogada, esconder o botão de editar nome
+    if (count == 1) {
+        editName();
+    }
 }
 
 
@@ -135,3 +140,61 @@ function resetScreen() { // após da vitória/empate, a tela volta ao normal
     let pt = document.getElementById("playerTurn");
     pt.innerHTML =  `<div>Quem joga:</div><div class="${symbols[turn]}"></div>`
 }
+
+function editName(player) {
+    console.log(player)
+    if (player) {
+        let roundCount = document.getElementById("roundCount");
+        rCount = parseInt(roundCount.innerText);
+        let id = player.id
+        let name = player.children[0].innerHTML
+
+        if (rCount == 1 && count == 0) {
+            player.style = "justify-content: space-around;"
+
+            player.innerHTML = `<input type="text" id="input-${id}" class="input-name" placeholder="Nome" maxlength="10">
+            <input id='btn-confirm-${id}' class="btn-icons btn-confirm" type="button"></input>`
+
+            let inputField = player.children[0]
+            let confirmBtn = player.children[1]
+
+            inputField.focus()
+
+            inputField.addEventListener('keyup', function(event) {
+                if (event.keyCode === 13) {
+                    confirmBtn.click()
+                }
+            })
+
+            confirmBtn.addEventListener('click', () => {
+                player.style = "justify-content: center;"
+                if (inputField.value == '') {
+                    inputField.value = name
+                }
+                player.innerHTML = `<div id="${player.id}">${inputField.value}</div>
+            <button id="btn-edit-${player.id}" class="btn-icons btn-edit" onclick="editName(document.getElementById('${player.id}'))"></button>`
+            })
+        }
+    } else {
+        let allPlayers = document.querySelectorAll('.btn-edit')
+        allPlayers.forEach((div) => {
+            div.style = "display: none;"
+
+            if (isNewGame) {
+                div.style = "display: inline-block;"
+            }
+        })
+    }
+    
+
+        
+        
+        //criar uma função aqui pra ser chamada lá no new game fazendo voltar ao normal
+
+ 
+    //checar se o nome selecionado não é igual ao outro nome
+    //criar condição de ativar a troca de nome apenas no primeiro round
+    //trocar a cor do botão de editar quando ele estiver desativado
+}
+
+
