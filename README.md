@@ -59,5 +59,3 @@ Você pode clicar **[aqui](https://cristianopaludo.github.io/jogoDaVelha/)** par
 Obrigado por ter lido até aqui!
 
 Sugestões, criticas e comentários serão bem vindos. 
-
-
