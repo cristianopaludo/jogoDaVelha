@@ -56,5 +56,6 @@ Você pode clicar **[aqui](https://cristianopaludo.github.io/jogoDaVelha/)** par
 - [ ] Melhorar a responsividade
 - [ ] Possibilidade de jogar online
 
-Obrigado por ter lido até aqui! 
+Obrigado por ter lido até aqui!
+
 Sugestões, criticas e comentários serão bem vindos. 
