@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
+    <audio id="soundP1">
+        <source src="./sounds/zapsplat_small_click_001.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundP2">
+        <source src="./sounds/zapsplat_small_click_002.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundError">
+        <source src="./sounds/zapsplat_error_001.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundClick">
+        <source src="./sounds/zapsplat_click_short_001.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundBtn">
+        <source src="./sounds/zapsplat_small_click_003.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundWin">
+        <source src="./sounds/zapsplat_cartoon_success_fanfair.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    <audio id="soundDraw">
+        <source src="./sounds/zapsplat_game_win.mp3" type="audio/ogg">
+        Este navegador não suporta este audio.
+    </audio>
+    
     
     <div id="resultScreen">
         <div id="result"></div>
@@ -15,7 +44,7 @@
     </div>
 
     <h1>Jogo da Velha</h1>
-   
+    <button id="audio" class="btn-icons" onclick="muteBtn()"></button>
     <div id="score">
         <div id="p1" class="players">
             <div id="nameP1">Jogador 1</div>
@@ -61,9 +90,8 @@
         <button id="restart" class="btn" onclick="restart()">Restart</button>
         <button id="newGame" class="btn" onclick="newGame()">Novo Jogo</button>
     </div>
-    
-    
+
     <script src="./scripts/game.js"></script>
-    <script src="./scripts/interface.js"></script>   
+    <script src="./scripts/interface.js"></script>  
 </body>
 </html>

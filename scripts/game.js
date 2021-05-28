@@ -4,6 +4,7 @@ let gameOver = false; // se o jogo acabou
 let restartGame = false;
 let isNewGame = false;
 let isDraw = false;
+let soundOn = true;
 let count = 0;
 let winnerSeq;
 let symbols = ['o', 'x']; // marcação do jogador
@@ -20,7 +21,6 @@ let winStates = [ // mapeamento de cada estado de vitória
 
 // lógica de movimento que vai receber a posição do quadrado clicado na interface
 function handleMove(position) {
-    
     if (gameOver) { // imperdir que o jogo prossiga quando acabar
         return;
     }
@@ -33,22 +33,15 @@ function handleMove(position) {
         if (isWin() || isDraw) {
             gameOver = true;
         }
-        // gameOver = isWin();
-        // // verificar se houve empate
-        // gameOver = isDraw;
 
         if (!gameOver) {
-            // programar a vez do player
-            // if (playerTime == 0) {
-            //     playerTime = 1;
-            // } else {
-            //     playerTime = 0;
-            // }
             playerTurn();
         }
-
+        playerTime = playerTime == 0 ? 1 : 0;
+    } else {
+        playAudio(soundError);
     }
-    playerTime = playerTime == 0 ? 1 : 0;
+
     return gameOver;
 }
 
@@ -89,6 +82,7 @@ function restart() {
     isDraw = false;
     count = 0;
     updateSquares(); // atualiza a interface do tabuleiro
+    playAudio(soundClick);
     restartGame = false; // desativa o restartGame mode
 }
 

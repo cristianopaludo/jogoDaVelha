@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     let squares = document.querySelectorAll(".square"); // pega todas divs
-    
+
     // pra cada elemento clicado chama a função handlerClick
     squares.forEach((square) => {
         square.addEventListener('click', handlerClick);
@@ -16,21 +16,23 @@ function handlerClick(event) {
     let position = square.id;
 
     let pt = document.getElementById("playerTurn");
-    
-
-    if (handleMove(position)) { // se o jogo acabar dispara um alerta depois de 10ms
+    if (handleMove(position)) {
         let resultScreen = document.getElementById("resultScreen");
         let winner = document.getElementById("winner");
         let closeResultScreen = document.getElementById("closeResultScreen");
         let result = document.getElementById("result");
+        let soundWin = document.getElementById("soundWin");
+        
+        
 
         if (isDraw) {
             result.innerText = "DEU VELHA!:";
             winner.style = "display: none;";
-
+            playAudio(soundDraw);
         } else {
             result.innerText = "VENCEDOR:";
             winner.style = "display: block;";
+            playAudio(soundWin);
         }
 
 
@@ -47,17 +49,23 @@ function handlerClick(event) {
         closeResultScreen.addEventListener('click', () => {
             pt.innerHTML = '';
             resultScreen.style = "display: none;";
-            alert
         }) 
     }
 
     // chamar uma função que atualiza a interface do quadrado clicado
     updateSquare(position);
 
-    // após a primeira jogada, esconder o botão de editar nome
+    // após a primeira jogada, alterar o botão de editar nome
     if (count == 1) {
         editName();
     }
+
+    // chamar o evento do audio
+    if (playerTime == 0) {
+            playAudio(soundP1);
+        } else if (playerTime == 1) {
+            playAudio(soundP2);
+        }
 }
 
 
@@ -90,7 +98,6 @@ function updateSquares() {
         if (restartGame) {
             square.style = "border-color: #101010;"
         }
-
     })
 }
 
@@ -142,13 +149,12 @@ function resetScreen() { // após da vitória/empate, a tela volta ao normal
 }
 
 function editName(player) {
-    console.log(player)
     if (player) {
         let roundCount = document.getElementById("roundCount");
         rCount = parseInt(roundCount.innerText);
         let id = player.id
         let name = player.children[0].innerHTML
-
+        playAudio(soundBtn);
         if (rCount == 1 && count == 0) {
             player.style = "justify-content: space-around;"
 
@@ -172,29 +178,38 @@ function editName(player) {
                     inputField.value = name
                 }
                 player.innerHTML = `<div id="${player.id}">${inputField.value}</div>
-            <button id="btn-edit-${player.id}" class="btn-icons btn-edit" onclick="editName(document.getElementById('${player.id}'))"></button>`
+                <button id="btn-edit-${player.id}" class="btn-icons btn-edit" onclick="editName(document.getElementById('${player.id}'))"></button>`
+                playAudio(soundBtn);
             })
         }
     } else {
         let allPlayers = document.querySelectorAll('.btn-edit')
         allPlayers.forEach((div) => {
-            div.style = "display: none;"
+            div.style = "background-image: url('../images/edit-icon-hex757575.png');"
 
             if (isNewGame) {
-                div.style = "display: inline-block;"
+                div.style = "background-image: url('../images/edit-icon-tomato.png');"
             }
         })
     }
-    
-
-        
-        
-        //criar uma função aqui pra ser chamada lá no new game fazendo voltar ao normal
-
- 
-    //checar se o nome selecionado não é igual ao outro nome
-    //criar condição de ativar a troca de nome apenas no primeiro round
-    //trocar a cor do botão de editar quando ele estiver desativado
 }
 
+function playAudio(audioName) {
+    // tocar o som
+    if (audioName && soundOn) {
+        let audio = document.getElementById(`${audioName.id}`)
+        return audio.play();
+    }  
+}
 
+function muteBtn() {
+    // colocar/tirar do mudo
+    let muteBtn = document.getElementById("audio");
+    if (soundOn) {
+        muteBtn.style = "background-image: url('../images/audio-muted-icon-tomato.png');"
+        soundOn = false;
+    } else {
+        muteBtn.style = "background-image: url('../images/audio-icon-seagreen.png');"
+        soundOn = true;
+    }
+}

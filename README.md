@@ -11,7 +11,7 @@ Você pode clicar **[aqui](https://cristianopaludo.github.io/jogoDaVelha/)** par
 ### Placar
 - Nome dos Jogadores
     - [x] Botão para editar o nome
-        > Condição para que o botão apareça apenas na primeira rodada e antes da primeira jogada
+        > Condição para que o botão funcione apenas na primeira rodada e antes da primeira jogada
     - [x] Input para receber o nome
     - [x] Botão para confirmar o novo nome
         > Condição para em caso receber um valor vazio, manter o nome de antes
@@ -49,7 +49,7 @@ Você pode clicar **[aqui](https://cristianopaludo.github.io/jogoDaVelha/)** par
 ## Melhorias que serão adicionadas no futuro
 - [ ] Em placar, na vez do jogador, ao pressionar os botões "Restart/Novo Jogo" antes do término da partida, o jogador perderá a sua vez de jogar
 - [ ] Melhorar o layout da tela do ganhador
-- [ ] Adicionar som no projeto (com opção de -mute-)
+- [x] Adicionar som no projeto (com opção de -mute-)
 - [ ] Permitir o usuário escolher seus próprios símbolos
 - [ ] Elaborar um sistema de "Melhor de Três" rodadas (md3)
 - [ ] Criar o local Storage
